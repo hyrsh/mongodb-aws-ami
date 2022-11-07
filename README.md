@@ -1,8 +1,8 @@
-#Simple MongoDB install script for AWS AMI VMs
+# Simple MongoDB install script for AWS AMI VMs
 
 This is a single node setup for MongoDB on Amazon AMI virtual machines. Just run the script as privileged user.
 
-#Usage on a fresh machine
+# Usage on a fresh machine
 
 - sudo yum install git -y
 - sudo git clone https://github.com/hyrsh/mongodb-aws-ami
