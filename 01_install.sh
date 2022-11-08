@@ -29,7 +29,8 @@ cat ./mongodb.repo | sed "s/AMIVERSIONCOMP/$ver/g" > $mongodbrepo
 
 yum install mongodb-org -y
 
-echo -e "#!/bin/bash\nalias mongolog='less /var/log/mongodb/mongod.log'" > /etc/profile.d/mongologs.sh
+echo '#!/bin/bash' > /etc/profile.d/mongologs.sh
+echo "alias mongolog='less /var/log/mongodb/mongod.log'" >> /etc/profile.d/mongologs.sh
 
 ./etc/profile.d/mongologs.sh
 
