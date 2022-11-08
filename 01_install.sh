@@ -32,7 +32,7 @@ yum install mongodb-org -y
 echo '#!/bin/bash' > /etc/profile.d/mongologs.sh
 echo "alias mongolog='less /var/log/mongodb/mongod.log'" >> /etc/profile.d/mongologs.sh
 
-./etc/profile.d/mongologs.sh
+. /etc/profile.d/mongologs.sh
 
 systemctl enable mongod
 systemctl start mongod
