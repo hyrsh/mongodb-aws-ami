@@ -32,10 +32,19 @@ yum install mongodb-org -y
 echo '#!/bin/bash' > /etc/profile.d/mongologs.sh
 echo "alias mongolog='less /var/log/mongodb/mongod.log'" >> /etc/profile.d/mongologs.sh
 
+prettyformat='cat /var/log/mongodb/mongod.log | awk -F, "{print \$3\"\t\"\$6 \$7}" | sed -e "s/\"c\"://g" -e "s/\"msg\"://g" | tail -100'
+
+echo '#!/bin/bash' > /etc/profile.d/prettymongo.sh
+echo -n "alias prettymo='" >> /etc/profile.d/prettymongo.sh
+echo -n "$prettyformat" >> /etc/profile.d/prettymongo.sh
+echo -n "'" >> /etc/profile.d/prettymongo.sh
+
 . /etc/profile.d/mongologs.sh
+. /etc/profile.d/prettymongo.sh
 
 systemctl enable mongod
 systemctl start mongod
 
 echo -e "\e[36;1mStarted and enabled MongoDB!\e[0;0m"
-echo -e "\e[36;1mSee logs by typing 'mongolog'\e[0;0m"
+echo -e "\e[36;1mSee full logs by typing 'mongolog'\e[0;0m"
+echo -e "\e[36;1mSee 100 line pretty logs by typing 'prettymo'\e[0;0m"
